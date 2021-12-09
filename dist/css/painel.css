@@ -1,0 +1,37 @@
+.bt_painel {
+    padding-bottom: 80px;
+}
+
+.bt_painel a {
+    color: var(--azul);
+}
+
+.bt_card h5 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+.bt_card {
+    text-align: center;
+    background: rgb(192, 193, 200);
+    background: -moz-linear-gradient(0deg, rgba(192, 193, 200, 1) 21%, rgba(231, 233, 235, 1) 77%);
+    background: -webkit-linear-gradient(0deg, rgba(192, 193, 200, 1) 21%, rgba(231, 233, 235, 1) 77%);
+    background: linear-gradient(0deg, rgba(192, 193, 200, 1) 21%, rgba(231, 233, 235, 1) 77%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#c0c1c8", endColorstr="#e7e9eb", GradientType=1);
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.22);
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.22);
+    border: 2px solid #babcbd;
+    transition: all 0.1s linear;
+    border-radius: 10px;
+}
+
+.bt_card:hover {
+    border: 2px solid var(--azul);
+}
+
+.bt_card img {
+    position: relative;
+    display: inline;
+    /* margin-bottom: 15px; */
+}

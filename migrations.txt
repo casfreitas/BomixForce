@@ -1,0 +1,99 @@
+C:\inetpub\wwwroot\documentos
+
+
+
+
+CREATE TABLE sys_tb_usuarios (
+us_id INT PRIMARY KEY IDENTITY,
+us_senha VARCHAR (150) NOT NULL,
+us_last_login DATETIME2,
+us_nome_completo VARCHAR (150) NOT NULL,
+us_usuario VARCHAR (50) NOT NULL,
+us_email VARCHAR (255) NOT NULL,
+us_nivel INT NOT NULL,
+us_status INT NOT NULL,
+us_grupo INT NOT NULL,
+us_data_entrada DATETIME2,
+)
+GO
+
+
+
+CREATE TABLE sys_tb_contatos (
+co_id INT PRIMARY KEY IDENTITY,
+us_fk INT,
+co_data_entrada DATETIME2,
+co_nome VARCHAR (150) NOT NULL,
+co_endereco VARCHAR (255) NOT NULL,
+co_email VARCHAR (255) NOT NULL,
+)
+GO
+
+
+CREATE TABLE sys_tb_nao_conforme (
+nc_id CHAR (32) PRIMARY KEY IDENTITY,
+us_fk CHAR (32),
+nc_data_entrada DATETIME2,
+nc_lote VARCHAR (50) NULL,
+nc_nota VARCHAR (50) NULL,
+nc_quant INT NOT NULL,
+nc_item VARCHAR (50) NOT NULL,
+nc_cliente VARCHAR (50) NOT NULL,
+nc_descricao VARCHAR (255) NULL,
+nc_status INT NOT NULL,
+nc_arquivo NVARCHAR(100) NULL,
+)
+GO
+
+
+CREATE TABLE sys_tb_nao_conforme_msg (
+ncm_id CHAR (32) PRIMARY KEY,
+us_fk CHAR (32),
+ncm_msg TEXT NOT NULL,
+ncm_arquivo NVARCHAR (100) NULL,
+ncm_data_envio DATETIME2,
+)
+GO
+
+CREATE TABLE sys_tb_nao_conforme_msg_resp (
+ncr_id CHAR (32) PRIMARY KEY,
+nc_fk CHAR (32),
+ncr_msg TEXT NOT NULL,
+ncr_arquivo NVARCHAR (100) NULL,
+ncr_data_envio DATETIME2,
+)
+GO
+
+
+CREATE TABLE sys_tb_documentos (
+doc_id INT PRIMARY KEY IDENTITY,
+us_fk INT,
+doc_nome NVARCHAR (255) NOT NULL,
+doc_solicitado NVARCHAR (100) NULL,
+doc_enviado NVARCHAR (100) NULL,
+doc_data_cadastro DATETIME2,
+doc_data_atualizado DATETIME2,
+)
+GO
+
+
+
+
+CREATE TABLE sys_tb_usuario_empresa (
+us_fk INT,
+ue_setor NVARCHAR (50) NULL,
+ue_cargo NVARCHAR (50) NULL,
+us_grupo_fk INT,
+)
+GO
+
+
+CREATE TABLE sys_tb_usuario_permissao (
+up_id INT PRIMARY KEY IDENTITY,
+up_user_emp_fk CHAR (32) NULL,
+up_permissao INT NULL,
+)
+GO
+
+
+

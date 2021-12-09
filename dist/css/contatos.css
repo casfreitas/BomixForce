@@ -1,0 +1,14 @@
+.card_contato {
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 20px 20px 20px 30px;
+    border: 1px solid var(--cinza_claro);
+    min-height: 220px;
+}
+
+.card_contato h3 {
+    color: var(--azul_marinho);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}

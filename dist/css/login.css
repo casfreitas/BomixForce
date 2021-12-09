@@ -1,0 +1,129 @@
+.telaLogin {
+    background-image: url('../images/bg_login.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg_campo_login {
+    background-color: rgb(255, 255, 255, 40%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 60px;
+    flex-direction: column;
+}
+
+.icone_login {
+    background: var(--azul_marinho);
+    display: table;
+    padding: 30px;
+    border-radius: 50%;
+    margin-top: -141px;
+    margin-bottom: 20px;
+}
+
+.icone_login img {
+    width: 60px;
+    height: 60px;
+}
+
+.box_login {
+    background: var(--branco);
+    position: relative;
+    display: inline-block;
+    padding: 80px 40px 40px 40px;
+    max-width: 380px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.campo_alerta {
+    position: relative;
+    display: inline-block;
+    max-width: 380px;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.form_link p {
+    font-size: 0.875rem;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.form-login img {
+    width: 22px;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 15px;
+    z-index: 99999;
+}
+
+@media screen and (max-width: 576px) {
+    .bg_campo_login {
+        padding: 40px 20px;
+    }
+    .box_login {
+        max-width: 300px;
+        padding: 80px 20px 30px 20px;
+    }
+    .icone_login {
+        background: var(--azul_marinho);
+        display: table;
+        padding: 30px;
+        border-radius: 50%;
+        margin-top: -141px;
+        margin-bottom: 20px;
+    }
+    .campo_alerta {
+        position: relative;
+        display: inline-block;
+        max-width: 300px;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .bg_campo_login {
+        background: none;
+    }
+}
+
+
+/* RESET */
+
+.campo_reset h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+.campo_reset .info {
+    margin-bottom: 20px;
+}
+
+.box_reset {
+    background: var(--branco);
+    position: relative;
+    display: inline-block;
+    padding: 40px 40px 40px 40px;
+    max-width: 380px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 576px) {
+    .box_reset {
+        max-width: 300px;
+        padding: 20px 20px 20px 20px;
+    }
+    .campo_reset h3 {
+        font-size: 1.4rem;
+    }
+}

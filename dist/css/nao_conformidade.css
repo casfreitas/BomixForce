@@ -1,0 +1,58 @@
+.chat1 {
+    background: var(--azul_marinho);
+    color: var(--branco);
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+.chat2 {
+    background-color: rgb(67, 94, 190, 10%);
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+.arquivo i,
+.arquivo a {
+    color: var(--verde) !important;
+}
+
+.arquivo a:hover {
+    text-decoration: underline;
+}
+
+.dados_cliente {
+    /* background-color: var(--cinza); */
+    border: 1px solid var(--azul_marinho);
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.nao_conforme_chat {
+    height: 400px;
+    overflow-y: auto;
+    padding: 0 0 10px 0;
+}
+
+.nao_conforme_chat::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
+}
+
+.nao_conforme_chat::-webkit-scrollbar-track {
+    background: var(--branco);
+    /* color of the tracking area */
+}
+
+.nao_conforme_chat::-webkit-scrollbar-thumb {
+    background-color: var(--azul_marinho);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid var(--branco);
+    /* creates padding around scroll thumb */
+}
