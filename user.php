@@ -102,6 +102,7 @@ if ($_SESSION['us_grupo'] === '4') {
                       LEFT JOIN sys_tb_usuario_empresa e
                       ON e.us_fk = u.us_id
                       WHERE u.us_nivel != 1
+                      AND us_grupo != 1 
                       AND u.us_id != '$usuario_logado'
                       ";
             }
@@ -455,18 +456,6 @@ if ($_SESSION['us_grupo'] == '1') { ?>
 if ($_SESSION['us_grupo'] == '1') { ?>
   <?php include 'includes/modal/user/cad_cliente.php'; ?>
 
-
-  <script>
-    // BOTAO LOAD
-    document.querySelector('.LoadCadCliente').addEventListener('click', function() {
-      var _this = this;
-      _this.classList.add('loading');
-      setTimeout(function() {
-        _this.classList.remove('loading');
-      }, 100000);
-    });
-  </script>
-
   <!-- PREENCHE OS CAMPOS DOS CADASTROS DE USUARIO 'CLIENTE' -->
   <script>
     $(document).ready(function() {
@@ -487,6 +476,20 @@ if ($_SESSION['us_grupo'] == '1') { ?>
     });
   </script>
 <?php } ?>
+
+
+<script>
+  // BOTAO LOAD
+  document.querySelector('.LoadCadCliente').addEventListener('click', function() {
+    var _this = this;
+    _this.classList.add('loading');
+    setTimeout(function() {
+      _this.classList.remove('loading');
+    }, 100000);
+  });
+</script>
+
+
 
 <?php
 // ACESSO AO MODEL DE CADASTRO DO USUÁRIO DO  CLIENTE
@@ -520,7 +523,7 @@ if ($_SESSION['us_grupo'] == '1' || $_SESSION['us_grupo'] == '2') { ?>
 
 <?php
 // ACESSO AO MODEL DE EDIÇÃO DO USUÁRIO DO  CLIENTE
-if ($_SESSION['us_grupo'] == '2' || $_SESSION['us_grupo'] == '3' || $_SESSION['us_nivel'] == '1') { ?>
+if ($_SESSION['us_grupo'] == '2' || $_SESSION['us_grupo'] == '3' || $_SESSION['us_grupo'] == '1') { ?>
   <?php include 'includes/modal/user/edit_cliente_user.php'; ?>
 <?php } ?>
 
