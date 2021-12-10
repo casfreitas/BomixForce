@@ -161,6 +161,7 @@ if ($_GET['funcao'] == "cad_admin" || $_GET['funcao'] == "cad_comercial") {
   $email_conteudo .= "<strong>Senha:</strong>     $senha \n";
   $email_conteudo .= "<strong>Email:</strong>     $email \n";
   $email_conteudo .= "<strong>Grupo:</strong>     $papel[$grupo] \n";
+  $email_conteudo .= "<strong>Endereço de acesso:</strong> https://192.168.254.74/bomixforce \n";
 
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=UTF-8';
@@ -274,6 +275,7 @@ if ($_GET['funcao'] == "cad_cliente") {
   $email_conteudo .= "<strong>Usuário:</strong>   $usuario \n";
   $email_conteudo .= "<strong>Senha:</strong>     $senha \n";
   $email_conteudo .= "<strong>Email:</strong>     $email \n";
+  $email_conteudo .= "<strong>Endereço de acesso:</strong> https://192.168.254.74/bomixforce \n";
 
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=UTF-8';
@@ -451,6 +453,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $email_conteudo .= "<strong>Setor:</strong>     $setor \n";
   $email_conteudo .= "<strong>Cargo:</strong>     $cargo \n";
   $email_conteudo .= "<strong>Cliente:</strong>   $cliente \n";
+  $email_conteudo .= "<strong>Endereço de acesso:</strong> https://192.168.254.74/bomixforce \n";
 
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=UTF-8';
@@ -474,6 +477,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $email_conteudo_comercial .= "<strong>Usuário:</strong>   $usuario \n";
   $email_conteudo_comercial .= "<strong>Email:</strong>     $email \n";
   $email_conteudo_comercial .= "<strong>Cliente:</strong>   $cliente \n";
+  $email_conteudo .= "<strong>Endereço de acesso:</strong> https://192.168.254.74/bomixforce \n";
 
   $headers_comercial[] = 'MIME-Version: 1.0';
   $headers_comercial[] = 'Content-type: text/html; charset=UTF-8';
