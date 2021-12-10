@@ -31,7 +31,7 @@
         <div class="col-md-6 col-xl-4 col-xxl-3">
           <div class="card_contato">
             <div class="row bt_icone">
-              <div class="col text-end <?php if ($_SESSION['us_nivel'] != 1) {
+              <div class="col text-end <?php if ($_SESSION['us_grupo'] != 1) {
                                           echo 'd-none';
                                         } else {
                                           echo 'border-bottom pb-3 mb-3';
