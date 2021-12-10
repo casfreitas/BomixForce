@@ -162,12 +162,12 @@ if (!empty($dados['SendReset'])) {
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text border icone_imput" id=""><i class="bi bi-lock-fill"></i></span>
-              <input type="password" class="form-control inputColor" name="senha" placeholder="Nova senha" required>
+              <input type="password" class="form-control inputColor" name="senha" minlength="4" maxlength="8" size="8" placeholder="Nova senha" required>
               <div class="invalid-feedback  text-start">Digite min: 4 / max: 8 caracteres</div>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text border icone_imput" id=""><i class="bi bi-lock-fill"></i></span>
-              <input type="password" class="form-control inputColor" name="rep_senha" placeholder="Repita a nova senha" required>
+              <input type="password" class="form-control inputColor" name="rep_senha" minlength="4" maxlength="8" size="8" placeholder="Repita a nova senha" required>
               <div class="invalid-feedback  text-start">Digite min: 4 / max: 8 caracteres</div>
             </div>
             <div class="text-center">
