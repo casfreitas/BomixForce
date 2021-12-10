@@ -28,7 +28,8 @@ if (!empty($dados['SendLogin'])) {
 
     if ($row_usuario['us_status'] != 0) { // SE O STATUS DO USUARIO FOR 'INATIVO', NÃO PODE LOGAR
 
-      if ($dados['usuario'] == $row_usuario['us_usuario'] && $dados['senha'] == base64_decode($row_usuario['us_senha']) && (empty($row_usuario['us_last_login']))) { // SE O USUARIO NUNCA LOGOU, PEDE PARA CRIAR UMA NOVA SENHA
+      // SE O USUARIO NUNCA LOGOU, SERÁ PRECISO QUE O USUÁRIO ALTERE A SENHA QUE FOI ENVIADO POR EMAIL
+      if ($dados['usuario'] == $row_usuario['us_usuario'] && $dados['senha'] == base64_decode($row_usuario['us_senha']) && (empty($row_usuario['us_last_login']))) {
         $_SESSION['us_id']    = $row_usuario['us_id'];
         $_SESSION['us_senha'] = $row_usuario['us_senha'];
         $_SESSION['us_usuario'] = $row_usuario['us_usuario'];
