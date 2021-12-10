@@ -94,15 +94,26 @@ if ($_SESSION['us_grupo'] === '4') {
 
             <?php
             include 'conexao/conexao_sqlsrv.php';
-            //CONSULTA DO ADMINISTRADOR
-            if ($_SESSION['us_grupo'] == '1') {
+            //CONSULTA DO ADMINISTRADOR MASTER
+            if ($_SESSION['us_nivel'] == '1') {
               $usuario_logado = $_SESSION['us_id'];
               $sql = "SELECT u.us_id, u.us_identificador, u.us_cliente, u.us_last_login, u.us_nome_completo, u.us_usuario, u.us_email, u.us_nivel, u.us_status, u.us_grupo, u.us_data_entrada, e.us_fk, e.ue_setor, e.ue_cargo, e.ue_recno, e.ue_cliente, e.ue_cnpj, e.ue_permissao
                       FROM sys_tb_usuarios u
                       LEFT JOIN sys_tb_usuario_empresa e
                       ON e.us_fk = u.us_id
                       WHERE u.us_nivel != 1
-                      AND us_grupo != 1 
+                      AND u.us_id != '$usuario_logado'
+                      ";
+            }
+
+            //CONSULTA DO ADMINISTRADOR
+            if ($_SESSION['us_nivel'] <> '1') {
+              $usuario_logado = $_SESSION['us_id'];
+              $sql = "SELECT u.us_id, u.us_identificador, u.us_cliente, u.us_last_login, u.us_nome_completo, u.us_usuario, u.us_email, u.us_nivel, u.us_status, u.us_grupo, u.us_data_entrada, e.us_fk, e.ue_setor, e.ue_cargo, e.ue_recno, e.ue_cliente, e.ue_cnpj, e.ue_permissao
+                      FROM sys_tb_usuarios u
+                      LEFT JOIN sys_tb_usuario_empresa e
+                      ON e.us_fk = u.us_id
+                      WHERE u.us_grupo != 1
                       AND u.us_id != '$usuario_logado'
                       ";
             }
