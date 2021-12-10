@@ -26,14 +26,19 @@
             <div class="invalid-feedback">Campo obrigatório</div>
           </div>
           <div class="col-md-6">
-            <!-- <label for="item" class="form-label">Item <span class="aste-red">*</span></label> -->
+            <!-- <label for="quantidade" class="form-label">Quantidade <span class="aste-red">*</span></label> -->
+            <input type="text" class="form-control campo_form" id="item" name="item" placeholder="Item" required>
+            <div class="invalid-feedback">Campo obrigatório</div>
+          </div>
+          <!-- <div class="col-md-6">
+            <label for="item" class="form-label">Item <span class="aste-red">*</span></label>
             <select class="form-select campo_select inputColor" id="item" name="item" required>
               <option selected disabled value="">Item</option>
               <option value="TAMPA">TAMPA</option>
               <option value="BALDE">BALDE</option>
             </select>
             <div class="invalid-feedback">Campo obrigatório</div>
-          </div>
+          </div> -->
           <!-- <h5 class="fs-6">
             <p>Informação adicional</p>
           </h5> -->
