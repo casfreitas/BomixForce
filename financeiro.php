@@ -74,20 +74,16 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
               $data_day = date_create($_POST['data_inicio']);
               $data_day = date_format($data_day, 'd/m/Y');
               //echo $data_day . '<br>';
-            } else {
-              $data_day = date('d/m/Y'); // DATA DE HOJE
             }
 
             if ($_POST['data_fim'] <> '') {
               $data_dayMais = date_create($_POST['data_fim']);
               $data_dayMais = date_format($data_dayMais, 'd/m/Y');
               //echo $data_dayMais . '<br>';
-            } else {
-              $data_dayMais = date('d/m/Y', strtotime('+30 days')); // DATA DE HOJE MAIS 7 DIAS
             }
 
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO
-            $sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_day', '$data_dayMais', '$id_user', '$nota'";
+            @$sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_day', '$data_dayMais', '$id_user', '$nota'";
           } else {
 
             $data_day = date('d/m/Y'); // DATA DE HOJE

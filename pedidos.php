@@ -84,20 +84,16 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
               $data_day = date_create($_POST['data_inicio']);
               $data_day = date_format($data_day, 'd/m/Y');
               //echo $data_day . '<br>';
-            } else {
-              $data_day = date('d/m/Y'); // DATA DE HOJE
             }
 
             if ($_POST['data_fim'] <> '') {
               $data_day7mais = date_create($_POST['data_fim']);
               $data_day7mais = date_format($data_day7mais, 'd/m/Y');
               //echo $data_day7mais . '<br>';
-            } else {
-              $data_day7mais = date('d/m/Y', strtotime('+7 days')); // DATA DE HOJE MAIS 7 DIAS
             }
 
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO
-            $sql = "Exec [BomixForce].[dbo].[Bomix_GetPedidoVenda] '$data_day', '$data_day7mais', '$id_user', '$pedido'";
+            @$sql = "Exec [BomixForce].[dbo].[Bomix_GetPedidoVenda] '$data_day', '$data_day7mais', '$id_user', '$pedido'";
           } else {
 
             $data_day = date('d/m/Y'); // DATA DE HOJE
