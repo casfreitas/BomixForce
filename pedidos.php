@@ -84,13 +84,13 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
             }
 
             if ($_POST['data_inicio'] <> '') {
-              $data_day7menos = date_create($_POST['data_fim']);
-              $data_day7menos = date_format($data_day7mais, 'd/m/Y');
+              $data_day7menos = date_create($_POST['data_inicio']);
+              $data_day7menos = date_format($data_day7menos, 'd/m/Y');
               //echo $data_day . '<br>';
             }
 
             if ($_POST['data_fim'] <> '') {
-              $data_day = date_create($_POST['data_inicio']);
+              $data_day = date_create($_POST['data_fim']);
               $data_day = date_format($data_day, 'd/m/Y');
               //echo $data_day7mais . '<br>';
             }

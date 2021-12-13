@@ -32,14 +32,14 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
         <div class="col-md-6 col-lg-4 col-xl-3">
           <label class="form-label">Data início</label>
           <div class="input-group">
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_inicio" placeholder="<?= date('d/m/Y', strtotime('-30 days')) ?>">
+            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_inicio" placeholder="<?= date('d/m/Y', strtotime('-30 days')) ?>" required>
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
           <label class="form-label">Data fim</label>
           <div class="input-group">
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_fim" placeholder="<?= date('d/m/Y') ?>">
+            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_fim" placeholder="<?= date('d/m/Y') ?>" required>
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
@@ -74,13 +74,13 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
             }
 
             if ($_POST['data_inicio'] <> '') {
-              $data_dayMais = date_create($_POST['data_fim']);
+              $data_dayMais = date_create($_POST['data_inicio']);
               $data_dayMais = date_format($data_dayMais, 'd/m/Y');
               //echo $data_day . '<br>';
             }
 
             if ($_POST['data_fim'] <> '') {
-              $data_day = date_create($_POST['data_inicio']);
+              $data_day = date_create($_POST['data_fim']);
               $data_day = date_format($data_day, 'd/m/Y');
               //echo $data_dayMais . '<br>';
             }
