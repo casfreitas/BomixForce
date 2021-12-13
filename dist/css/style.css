@@ -564,6 +564,16 @@ table.dataTable tbody td {
 
 /* BOTÃO */
 
+.bt_busca {
+    margin-top: 44px;
+}
+
+@media only screen and (max-width: 767px) {
+    .bt_busca {
+        margin-top: 20px;
+    }
+}
+
 .bt_cad_padao {
     width: 70px;
     cursor: pointer;
