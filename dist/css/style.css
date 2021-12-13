@@ -78,6 +78,10 @@ small {
     background: var(--blue);
 }
 
+.bg-azul {
+    background: var(--azul);
+}
+
 .bg-indigo {
     background: var(--indigo);
 }
