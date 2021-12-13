@@ -283,6 +283,10 @@ small {
     color: #828281 !important;
 }
 
+.campo_form:disabled {
+    color: #828281 !important;
+}
+
 .campo_form:focus,
 .campo_textarea:focus,
 .campo_select:focus {
