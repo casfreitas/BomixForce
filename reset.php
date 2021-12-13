@@ -39,7 +39,7 @@ if (!empty($dados['SendReset'])) {
     $headers[] = 'From: ' . $email_remetente;
 
     //ENVIA O EMAIL
-    mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+    //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
     //====================================================
 
@@ -165,15 +165,16 @@ if (!empty($dados['SendReset'])) {
               <input type="password" class="form-control inputColor" name="senha" minlength="4" maxlength="8" size="8" placeholder="Nova senha" required>
               <div class="invalid-feedback  text-start">Digite min: 4 / max: 8 caracteres</div>
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mb-2">
               <span class="input-group-text border icone_imput" id=""><i class="bi bi-lock-fill"></i></span>
               <input type="password" class="form-control inputColor" name="rep_senha" minlength="4" maxlength="8" size="8" placeholder="Repita a nova senha" required>
               <div class="invalid-feedback  text-start">Digite min: 4 / max: 8 caracteres</div>
             </div>
-            <div class="text-center">
+            <small class="text-body fw-bolder">Mínimo 4 e máximo 8 caracteres </small>
+            <div class="text-center mt-2">
               <div class="row">
                 <div class="col-12"><button type="submit" name="SendResetPass" class="botao_vasado w-100" value="Acessar">Alterar Senha</button></div>
-                <div class="col-12 mt-3"><a href="index.php">Cancelar</a></div>
+                <div class="col-12 mt-3"><a href="index.php" class="botao_cancelar_vasado w-100 d-block">Cancelar</a></div>
               </div>
             </div>
           </form>
