@@ -149,13 +149,22 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
 
               <?php
               include 'conexao/conexao_sqlsrv.php';
-              $id = $_SESSION['us_id'];
-              $sql = "SELECT nc_id, us_fk, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_cliente, us_nome_completo
+              if (@$_SESSION['us_nivel' == '1']) {
+                $sql = "SELECT nc_id, us_fk, us_nivel, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_cliente, us_nome_completo
+                  FROM sys_tb_nao_conforme
+                  INNER JOIN sys_tb_usuarios
+                  ON sys_tb_nao_conforme.us_fk = sys_tb_usuarios.us_id
+                  ";
+              } else {
+
+                $id = $_SESSION['us_id'];
+                $sql = "SELECT nc_id, us_fk, us_nivel, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_cliente, us_nome_completo
                   FROM sys_tb_nao_conforme
                   INNER JOIN sys_tb_usuarios
                   ON sys_tb_nao_conforme.us_fk = sys_tb_usuarios.us_id
                   WHERE us_fk = '$id'
                   ";
+              }
 
 
               $stmt = sqlsrv_query($conn, $sql);
