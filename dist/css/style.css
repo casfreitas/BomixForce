@@ -568,6 +568,18 @@ table.dataTable tbody td {
     margin-top: 44px;
 }
 
+@media only screen and (max-width: 1199px) {
+    .bt_busca {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .bt_busca {
+        margin-top: 44px;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .bt_busca {
         margin-top: 20px;
