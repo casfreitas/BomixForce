@@ -23,27 +23,30 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
     <section class="mb-5">
       <form method="POST" action="<?php $PHP_SELF; ?>" class="row g-3">
         <div class="col-md-6 col-lg-4 col-xl-3">
+          <label class="form-label">Busca</label>
           <div class="input-group">
-            <input type="text" class="form-control campo_form text-uppercase" name="nota" placeholder="Busca">
+            <input type="text" class="form-control campo_form text-uppercase" name="nota">
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-search"></i></span>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
+          <label class="form-label">Data início</label>
           <div class="input-group">
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_inicio" placeholder="Data Início">
+            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_inicio" placeholder="<?= date('d/m/Y', strtotime('-30 days')) ?>">
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
+          <label class="form-label">Data fim</label>
           <div class="input-group">
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_fim" placeholder="Data Fim">
+            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_fim" placeholder="<?= date('d/m/Y') ?>">
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
-        <div class="col-auto">
+        <div class="col-auto bt_busca">
           <button type="submit" name="pesqNota" id="pesqNota" class="botao_vasado">Filtrar</button>
         </div>
-        <div class="col-auto">
+        <div class="col-auto bt_busca">
           <button type="reset" name="" id="" class="botao_cancelar_vasado">Limpar</button>
         </div>
       </form>
@@ -71,25 +74,25 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
             }
 
             if ($_POST['data_inicio'] <> '') {
-              $data_day = date_create($_POST['data_inicio']);
-              $data_day = date_format($data_day, 'd/m/Y');
+              $data_dayMais = date_create($_POST['data_fim']);
+              $data_dayMais = date_format($data_dayMais, 'd/m/Y');
               //echo $data_day . '<br>';
             }
 
             if ($_POST['data_fim'] <> '') {
-              $data_dayMais = date_create($_POST['data_fim']);
-              $data_dayMais = date_format($data_dayMais, 'd/m/Y');
+              $data_day = date_create($_POST['data_inicio']);
+              $data_day = date_format($data_day, 'd/m/Y');
               //echo $data_dayMais . '<br>';
             }
 
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO
-            @$sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_day', '$data_dayMais', '$id_user', '$nota'";
+            @$sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_dayMais', '$data_day', '$id_user', '$nota'";
           } else {
 
             $data_day = date('d/m/Y'); // DATA DE HOJE
-            $data_dayMais = date('d/m/Y', strtotime('+30 days')); // DATA DE HOJE MAIS 7 DIAS
+            $data_dayMais = date('d/m/Y', strtotime('-30 days')); // DATA DE HOJE MENOS 30 DIAS
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO
-            $sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_day', '$data_dayMais', '$id_user', ''";
+            $sql = "Exec [BomixForce].[dbo].[Bomix_GetNotaFiscalVenda] '$data_dayMais', '$data_day', '$id_user', ''";
           }
 
           $stmt = sqlsrv_query($conn, $sql);
