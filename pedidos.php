@@ -143,10 +143,6 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
             $uf          = $row['UF'];
             $cliente     = $row['Cliente'];
 
-            //SE STATOS FOR 'ENCERRADO', MUDA PARA FINALIZADO
-            if ($row['Status'] == trim('ENCERRADO')) {
-              $status = 'FINALIZADO';
-            }
 
             //COR DO STATUS
             $cor_status = $row['Status'];
