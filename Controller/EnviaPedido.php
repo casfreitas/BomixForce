@@ -10,14 +10,29 @@ $email_cliente = $_SESSION['us_email'];
 $email_remetente = "carlos.silveira.bmx@gmail.com"; //EMAIL CADASTRADO NO WEBMAIL DO XAMPP
 
 //CONFIGURAÇÕES
-$email_destinatario = "carlos.silveira.bmx@gmail.com;$email_cliente"; //EMAIL QUE RECEBERA A MENSAGEM
+$email_destino_comercial = "carlos.silveira.bmx@gmail.com";
+$email_destinatario = "$email_cliente"; //EMAIL QUE RECEBERA A MENSAGEM
 $email_reply = "carlos.silveira.bmx@gmail.com";
 $email_assunto = "Bomix Force - Pedido solicitado"; //ASSUNTO
 
 //CONTEÚDO DO EMAIL
-$email_conteudo .= "<h2><strong>PEDIDO:  $pedido</strong></h2>";
-$email_conteudo .= "O usuário $cliente solicitou a duplicação do pedido. \n";
-$email_conteudo .= "<h2><strong>DADOS DO PEDIDO:</strong></h2>";
+$email_conteudo = "<h3 style='font-family: Arial, Helvetica, sans-serif; font-weight: normal;line-height: 25px;'>A sua solicitação de duplicação de pedido foi recepcionada e encaminhada ao gestor da sua conta. \n Entraremos em contato para confirmar o seu pedido. </h3> \n";
+$email_conteudo .= "<h2 style='font-family: Arial, Helvetica, sans-serif;'>Bomix Force</h2>";
+
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-type: text/html; charset=UTF-8';
+
+//CABEÇALHO DO EMAIL
+$headers[] = 'To: ' . $email_destinatario;
+$headers[] = 'From: ' . $email_remetente;
+
+//ENVIA O EMAIL PARA O CLIENTE
+mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+
+
+$email_conteudo_comercial .= "<h2><strong>PEDIDO:  $pedido</strong></h2>";
+$email_conteudo_comercial .= "O usuário $cliente solicitou a duplicação do pedido. \n";
+$email_conteudo_comercial .= "<h2><strong>DADOS DO PEDIDO:</strong></h2>";
 
 $sql = "SELECT v.PedidoVenda_ID, i.Pedido_FK, v.OrdemCompra, v.Status, v.Emissao, v.Cidade, v.UF, v.Cliente, i.Produto, i.Quantidade, i.Personalizacao, i.ValorUnitario
         FROM BomixBi.dbo.Fat_TB_PedidoVenda v
@@ -36,23 +51,23 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
   $personali   = $row['Personalizacao'];
   $valor_uni   = $row['ValorUnitario'];
 
-  $email_conteudo .= "<strong>Produto:</strong> $produto \n";
-  $email_conteudo .= "<strong>Quantidade:</strong> $quantidade \n";
-  $email_conteudo .= "<strong>Personalização:</strong> $personali \n";
-  $email_conteudo .= "<strong>Valor unitário: R$</strong> $valor_uni \n";
-  $email_conteudo .= "<br> \n";
+  $email_conteudo_comercial .= "<strong>Produto:</strong> $produto \n";
+  $email_conteudo_comercial .= "<strong>Quantidade:</strong> $quantidade \n";
+  $email_conteudo_comercial .= "<strong>Personalização:</strong> $personali \n";
+  $email_conteudo_comercial .= "<strong>Valor unitário: R$</strong> $valor_uni \n";
+  $email_conteudo_comercial .= "<br> \n";
 }
 sqlsrv_free_stmt($stmt);
 
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/html; charset=UTF-8';
+$headers_comercial[] = 'MIME-Version: 1.0';
+$headers_comercial[] = 'Content-type: text/html; charset=UTF-8';
 
 //CABEÇALHO DO EMAIL
-$headers[] = 'To: ' . $email_destinatario;
-$headers[] = 'From: ' . $email_remetente;
+$headers_comercial[] = 'To: ' . $email_destino_comercial;
+$headers_comercial[] = 'From: ' . $email_remetente;
 
-//ENVIA O EMAIL
-mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+//ENVIA O EMAIL PARA O COMERCIAL
+mail($email_destino_comercial, $email_assunto, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
 
 //====================================================
 
