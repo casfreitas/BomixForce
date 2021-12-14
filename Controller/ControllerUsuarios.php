@@ -2,13 +2,13 @@
 include '../conexao/conexao_sqlsrv.php';
 
 
-$id_cad = md5(uniqid(rand(), true)); // ID PRINCIPAL
+//$id_cad = md5(uniqid(rand(), true)); // ID PRINCIPAL
 
-//$senha = base64_encode('123456'); // SENHA PADRÃO
+$senha = base64_encode('1234'); // SENHA PADRÃO
 
-$bytes = openssl_random_pseudo_bytes(4);
-$senha = bin2hex($bytes);
-$senha = base64_encode($senha);
+// $bytes = openssl_random_pseudo_bytes(4);
+// $senha = bin2hex($bytes);
+// $senha = base64_encode($senha);
 
 $nivel = '0';
 
@@ -171,7 +171,7 @@ if ($_GET['funcao'] == "cad_admin" || $_GET['funcao'] == "cad_comercial") {
   $headers[] = 'From: ' . $email_remetente;
 
   // ENVIA O EMAIL
-  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   // ===========================================================================================
 
@@ -285,7 +285,7 @@ if ($_GET['funcao'] == "cad_cliente") {
   $headers[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   //====================================================
 
@@ -463,7 +463,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $headers[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   //===============================================================================================
 
@@ -487,7 +487,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $headers_comercial[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  mail($email_destinatario_comercial, $email_assunto_comercial, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
+  //mail($email_destinatario_comercial, $email_assunto_comercial, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
 
   //ENVIA MENSAGEM
   session_start();
