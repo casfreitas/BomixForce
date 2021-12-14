@@ -71,7 +71,7 @@ if (!empty($dados['SendReset'])) {
             <div class="text-center">
               <div class="row">
                 <div class="col-12"><button type="submit" name="SendReset" class="botao_vasado w-100" value="Acessar">Recuperar</button></div>
-                <div class="col-12 mt-3"><a href="index.php">Cancelar</a></div>
+                <div class="col-12 mt-3"><a href="index.php" class="botao_cancelar_vasado w-100 d-block">Cancelar</a></div>
               </div>
             </div>
           </form>
