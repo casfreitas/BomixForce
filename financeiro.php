@@ -68,7 +68,7 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
       <div class="result_busca">
         <div class="row">
           <div class="col">
-            <p class="fs-5 mb-1">Resultado da busca:</p>
+            <p class="fs-5 mb-1 color-azul">Resultado da busca:</p>
             <p class="d-inline me-1"><strong>Busca: </strong><?= $nota ?> - </p>
             <p class="d-inline me-1"><strong>Data início: </strong><?= $data_dayMais ?> - </p>
             <p class="d-inline"><strong>Data fim: </strong><?= $data_day ?></p>
