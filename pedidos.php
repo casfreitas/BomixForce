@@ -38,7 +38,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
           <label class="form-label">Data início</label>
           <div class="input-group">
             <!-- <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control campo_form_data" name="data_inicio" placeholder="Data Início"> -->
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_inicio" placeholder="<?= date('d/m/Y', strtotime('-7 days')) ?>" required>
+            <input type="date" class="form-control campo_form_data text-uppercase" name="data_inicio" value="<?= date('Y-m-d', strtotime('-7 days')) ?>" required>
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
@@ -46,7 +46,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
           <label class="form-label">Data fim</label>
           <div class="input-group">
             <!-- <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control campo_form_data" name="data_fim" placeholder="Data Fim"> -->
-            <input type="text" onfocus="(this.type='date')" class="form-control campo_form_data text-uppercase" name="data_fim" placeholder="<?= date('d/m/Y') ?>" required>
+            <input type="date" class="form-control campo_form_data text-uppercase" name="data_fim" value="<?= date('Y-m-d') ?>" required>
             <span class="input-group-text border icone_imput_menor"><i class="bi bi-calendar3"></i></span>
           </div>
         </div>
