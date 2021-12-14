@@ -25,7 +25,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
     // var_dump($dados);
     ?>
 
-    <section class="buscaPedido mb-5">
+    <section class="buscaPedido mb-3">
       <form method="POST" action="<?php $PHP_SELF; ?>" class="row g-3">
         <div class="col-md-6 col-lg-4 col-xl-3">
           <label class="form-label">Busca</label>
@@ -62,8 +62,30 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
       </form>
     </section>
 
+    <?php if (isset($_POST['pesqPedido'])) {
+      $pedido = $_POST['pedido'];
+
+      $data_day7menos = date_create($_POST['data_inicio']);
+      $data_day7menos = date_format($data_day7menos, 'd/m/Y');
+
+      $data_day = date_create($_POST['data_fim']);
+      $data_day = date_format($data_day, 'd/m/Y');
+
+    ?>
+      <div class="result_busca">
+        <div class="row">
+          <div class="col">
+            <p class="fs-5 mb-1 color-azul">Resultado da busca:</p>
+            <p class="d-inline me-1"><strong>Busca: </strong><?= $pedido ?> - </p>
+            <p class="d-inline me-1"><strong>Data início: </strong><?= $data_day7menos ?> - </p>
+            <p class="d-inline"><strong>Data fim: </strong><?= $data_day ?></p>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+
     <div class="table-responsive">
-      <table id="pedidos" class="table tabela table-striped table-hover display">
+      <table id="pedidos" class="table tabela table-striped table-hover display mt-4">
         <thead>
           <tr>
             <th scope="col">Pedido</th>
@@ -89,13 +111,13 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
             if ($_POST['data_inicio'] <> '') {
               $data_day7menos = date_create($_POST['data_inicio']);
               $data_day7menos = date_format($data_day7menos, 'd/m/Y');
-              //echo $data_day . '<br>';
+              //echo $data_day7menos . '<br>';
             }
 
             if ($_POST['data_fim'] <> '') {
               $data_day = date_create($_POST['data_fim']);
               $data_day = date_format($data_day, 'd/m/Y');
-              //echo $data_day7mais . '<br>';
+              //echo $data_day . '<br>';
             }
 
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO
@@ -128,10 +150,10 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
 
             //COR DO STATUS
             $cor_status = $row['Status'];
-            if ($row['Status'] == trim('LIBERADO')) {
+            if ($row['Status'] == 'LIBERADO') {
               $cor_status = "bg-azul";
             }
-            if ($row['Status'] == trim('ENCERRADO')) {
+            if ($row['Status'] == 'ENCERRADO') {
               $cor_status = "bg-success";
             }
             if ($row['Status'] == 'BLOQUEADO LO' || $row['Status'] == 'BLOQUEADO PR') {

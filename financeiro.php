@@ -20,7 +20,7 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
   </div>
   <div class="container-fluid main_paginas px-4 px-sm-5 py-5">
 
-    <section class="mb-5">
+    <section class="mb-3">
       <form method="POST" action="<?php $PHP_SELF; ?>" class="row g-3">
         <div class="col-md-6 col-lg-4 col-xl-3">
           <label class="form-label">Busca</label>
@@ -55,8 +55,30 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
       </form>
     </section>
 
+    <?php if (isset($_POST['pesqNota'])) {
+      $nota = $_POST['nota'];
+
+      $data_dayMais = date_create($_POST['data_inicio']);
+      $data_dayMais = date_format($data_dayMais, 'd/m/Y');
+
+      $data_day = date_create($_POST['data_fim']);
+      $data_day = date_format($data_day, 'd/m/Y');
+
+    ?>
+      <div class="result_busca">
+        <div class="row">
+          <div class="col">
+            <p class="fs-5 mb-1">Resultado da busca:</p>
+            <p class="d-inline me-1"><strong>Busca: </strong><?= $nota ?> - </p>
+            <p class="d-inline me-1"><strong>Data início: </strong><?= $data_dayMais ?> - </p>
+            <p class="d-inline"><strong>Data fim: </strong><?= $data_day ?></p>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+
     <div class="table-responsive">
-      <table id="financeiro" class="table tabela table-striped table-hover display">
+      <table id="financeiro" class="table tabela table-striped table-hover display mt-4">
         <thead>
           <tr>
             <th scope="col">Nota Fiscal</th>
@@ -79,13 +101,13 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
             if ($_POST['data_inicio'] <> '') {
               $data_dayMais = date_create($_POST['data_inicio']);
               $data_dayMais = date_format($data_dayMais, 'd/m/Y');
-              //echo $data_day . '<br>';
+              //echo $data_dayMais . '<br>';
             }
 
             if ($_POST['data_fim'] <> '') {
               $data_day = date_create($_POST['data_fim']);
               $data_day = date_format($data_day, 'd/m/Y');
-              //echo $data_dayMais . '<br>';
+              //echo $data_day . '<br>';
             }
 
             $id_user = $_SESSION['us_id']; // ID DO USUÁRIO LOGADO

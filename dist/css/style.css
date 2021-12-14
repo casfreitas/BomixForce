@@ -71,6 +71,54 @@ small {
     margin-top: -15px !important;
 }
 
+.color-blue {
+    color: var(--blue);
+}
+
+.color-azul {
+    color: var(--azul);
+}
+
+.color-indigo {
+    color: var(--indigo);
+}
+
+.color-purple {
+    color: var(--purple);
+}
+
+.color-pink {
+    color: var(--pink);
+}
+
+.color-red {
+    color: var(--red);
+}
+
+.color-orange {
+    color: var(--orange);
+}
+
+.color-yellow {
+    color: var(--yellow);
+}
+
+.color-green {
+    color: var(--green);
+}
+
+.color-teal {
+    color: var(--teal);
+}
+
+.color-cyan {
+    color: var(--cyan);
+}
+
+.color-gray {
+    color: var(--gray);
+}
+
 
 /* BADGE */
 
