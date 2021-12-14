@@ -47,7 +47,10 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
           <button type="submit" name="pesqNota" id="pesqNota" class="botao_vasado">Filtrar</button>
         </div>
         <div class="col-auto bt_busca">
-          <button type="reset" name="" id="" class="botao_cancelar_vasado">Limpar</button>
+          <a href="financeiro.php">
+            <div name="" id="" class="botao_cancelar_vasado">Limpar</div>
+          </a>
+          <!-- <button type="reset" name="" id="" class="botao_cancelar_vasado">Limpar</button> -->
         </div>
       </form>
     </section>

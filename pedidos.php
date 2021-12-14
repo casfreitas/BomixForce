@@ -54,7 +54,10 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
           <button type="submit" name="pesqPedido" id="pesqPedido" class="botao_vasado">Filtrar</button>
         </div>
         <div class="col-auto bt_busca">
-          <button type="reset" name="" id="" class="botao_cancelar_vasado">Limpar</button>
+          <a href="pedidos.php">
+            <div name="" id="" class="botao_cancelar_vasado">Limpar</div>
+          </a>
+          <!-- <button type="reset" name="" id="" class="botao_cancelar_vasado">Limpar</button> -->
         </div>
       </form>
     </section>
