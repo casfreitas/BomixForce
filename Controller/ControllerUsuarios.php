@@ -2,7 +2,7 @@
 include '../conexao/conexao_sqlsrv.php';
 
 
-//$id_cad = md5(uniqid(rand(), true)); // ID PRINCIPAL
+$id_cad = md5(uniqid(rand(), true)); // ID PRINCIPAL
 
 $senha = base64_encode('1234'); // SENHA PADRÃO
 
