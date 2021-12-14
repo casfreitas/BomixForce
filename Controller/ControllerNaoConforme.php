@@ -152,8 +152,8 @@ if ($_GET['funcao'] == "cad_nao_conforme") {
   $email_assunto = "BOMIX FORCE - Registro de não conformidade"; //ASSUNTO
 
   // CORPO DO EMAIL
-  $email_conteudo = "<h3>Registramos a sua solicitação de abertura de não conformidade. \n Iniciaremos as investigações internas e retornaremos em breve com o resultado. \n Acompanhe o status da sua reclamação ao lado do seu registro.</h3>";
-  // $email_conteudo .= "<h2>Dados da não conformidade:</h2>";
+  $email_conteudo = "<h3 style='font-family: Arial, Helvetica, sans-serif; font-weight: normal;line-height: 25px;'>Registramos a sua solicitação de abertura de não conformidade. \n Iniciaremos as investigações internas e retornaremos em breve com o resultado. \n Acompanhe o status da sua reclamação ao lado do seu registro.</h3> \n";
+  $email_conteudo .= "<h2 style='font-family: Arial, Helvetica, sans-serif;'>Bomix Force</h2>";
   // $email_conteudo .= "<strong>Lote:</strong>        $lote \n";
   // $email_conteudo .= "<strong>Nota Fiscal:</strong> $nota \n";
   // $email_conteudo .= "<strong>Quantidade:</strong>  $quantidade \n";
@@ -266,7 +266,8 @@ if ($_GET['funcao'] == "cad_nao_conforme_msg") {
     $email_assunto = "BOMIX FORCE - Retorno da não conformidade"; //ASSUNTO
 
     // CORPO DO EMAIL
-    $email_conteudo = "<h3>O seu registro de não conformidade aberto em $data_entrada foi respondido. \n O relatório de Não Conformidade encontra-se disponível para download em nossa plataforma. </h3>";
+    $email_conteudo = "<h3 style='font-family: Arial, Helvetica, sans-serif; font-weight: normal;line-height: 25px;'>O seu registro de não conformidade aberto em $data_entrada foi respondido. \n O relatório de Não Conformidade encontra-se disponível para download em nossa plataforma. </h3> \n";
+    $email_conteudo .= "<h2 style='font-family: Arial, Helvetica, sans-serif;'>Bomix Force</h2>";
 
     $headers[] = 'MIME-Version: 1.0';
     $headers[] = 'Content-type: text/html; charset=UTF-8';
