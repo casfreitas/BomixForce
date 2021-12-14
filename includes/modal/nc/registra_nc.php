@@ -10,6 +10,7 @@
         <form method="post" action="Controller/ControllerNaoConforme.php?funcao=cad_nao_conforme" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
           <div class="col-md-6">
             <input type="hidden" class="form-control" id="" name="id_user" value="<?= $_SESSION['us_id'] ?>">
+            <input type="hidden" class="form-control" id="" name="email" value="<?= $_SESSION['us_email'] ?>">
             <input type="hidden" class="form-control" id="" name="status" value="ABERTO">
             <!-- <label for="lote" class="form-label">Lote <span class="aste-red">*</span></label> -->
             <input type="text" class="form-control campo_form" id="lote" name="lote" placeholder="Lote" required>

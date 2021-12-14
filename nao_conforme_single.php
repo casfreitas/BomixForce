@@ -28,7 +28,7 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
                 <?php
                 include 'conexao/conexao_sqlsrv.php';
                 $id = $_GET['id'];
-                $sql = "SELECT nc_id, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_nome_completo, us_usuario, nc_descricao, nc_arquivo
+                $sql = "SELECT nc_id, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_nome_completo, us_usuario, us_email, nc_descricao, nc_arquivo
                   FROM sys_tb_nao_conforme
                   INNER JOIN sys_tb_usuarios
                   ON sys_tb_nao_conforme.us_fk = sys_tb_usuarios.us_id
@@ -50,6 +50,7 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
 
                   $nome_completo = $row['us_nome_completo'];
                   $usuario       = $row['us_usuario'];
+                  $email         = $row['us_email'];
                 ?>
 
                   <div class="row">
@@ -80,14 +81,14 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
                 include 'conexao/conexao_sqlsrv.php';
                 $id = $_GET['id'];
                 $sql_msg = "SELECT *
-                      FROM sys_tb_nao_conforme_msg
-                      INNER JOIN sys_tb_nao_conforme
-                      ON sys_tb_nao_conforme.nc_id = sys_tb_nao_conforme_msg.nc_fk
-                      INNER JOIN sys_tb_usuarios
-                      ON sys_tb_usuarios.us_id = sys_tb_nao_conforme_msg.us_fk
-                      WHERE nc_fk = '$id'
-                      ORDER BY ncm_data_envio ASC
-                      ";
+                            FROM sys_tb_nao_conforme_msg
+                            INNER JOIN sys_tb_nao_conforme
+                            ON sys_tb_nao_conforme.nc_id = sys_tb_nao_conforme_msg.nc_fk
+                            INNER JOIN sys_tb_usuarios
+                            ON sys_tb_usuarios.us_id = sys_tb_nao_conforme_msg.us_fk
+                            WHERE nc_fk = '$id'
+                            ORDER BY ncm_data_envio ASC
+                            ";
 
                 $stmt_msg = sqlsrv_query($conn, $sql_msg);
                 while ($row_msg = sqlsrv_fetch_array($stmt_msg, SQLSRV_FETCH_ASSOC)) {
@@ -169,10 +170,13 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
                       <input class="form-control campo_form" type="file" name="arquivo" id="formFile">
                       <small>Apenas arquivos .jpg, .jpeg, .png, .pdf, .doc, .docx e .odt são permitidos</small>
                     </div>
+
                     <div class="col-lg-6 col-xxl-7 order-lg-2 order-1">
                       <input type="hidden" class="form-control" id="" name="id_nc" value="<?= $_GET['id'] ?>">
                       <input type="hidden" class="form-control" id="" name="id_us" value="<?= $_SESSION['us_id'] ?>">
                       <input type="hidden" class="form-control" id="" name="grupo" value="<?= $_SESSION['us_grupo'] ?>">
+                      <input type="hidden" class="form-control" name="email" value="<?= $email ?>">
+                      <input type="hidden" class="form-control" name="data_entrada" value="<?= date_format($data_entrada, 'Y-m-d') ?>">
                       <input type="hidden" class="form-control" id="" name="status" value="RESPONDIDO">
                       <label for="msg" class="form-label">Mensagem <span class="aste-red">*</span></label>
                       <textarea class="form-control campo_textarea" id="msg" name="msg" rows="2" maxlength="500" required></textarea>

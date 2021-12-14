@@ -51,10 +51,10 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
               <?php
               include 'conexao/conexao_sqlsrv.php';
               $sql = "SELECT nc_id, us_fk, nc_data_entrada, nc_lote, nc_nota, nc_quant, nc_item, nc_status, us_id, us_cliente, us_nome_completo
-                  FROM sys_tb_nao_conforme
-                  INNER JOIN sys_tb_usuarios
-                  ON sys_tb_nao_conforme.us_fk = sys_tb_usuarios.us_id
-                  ";
+                      FROM sys_tb_nao_conforme
+                      INNER JOIN sys_tb_usuarios
+                      ON sys_tb_nao_conforme.us_fk = sys_tb_usuarios.us_id
+                      ";
 
               $stmt = sqlsrv_query($conn, $sql);
               while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
@@ -232,8 +232,6 @@ if ((!isset($_SESSION['us_id'])) and (!isset($_SESSION['us_usuario']))) {
 
 <!-- VALIDA FORMULÁRIO -->
 <script src="js/valida_form.js"></script>
-
-
 
 <!-- TABLE -->
 <!-- <script src="dist/js/table/jquery-3.5.1.js"></script> -->

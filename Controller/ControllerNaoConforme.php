@@ -48,6 +48,15 @@ if (isset($_POST['status'])) {
   $status = $_POST['status'];
 }
 
+if (isset($_POST['email'])) { // Email para enviar aviso
+  $email = $_POST['email'];
+}
+
+if (isset($_POST['data_entrada'])) { // Data que foi aberta a não conformidade
+  $data_entrada = date_create($_POST['data_entrada']);
+  $data_entrada = date_format($data_entrada, 'd/m/Y');
+}
+
 if (isset($_POST["msg"])) {
   $msg = trim(nl2br($_POST['msg'])); // nl2br -> Reconhecer quebra de parágrafo
   $msg = str_replace("'", "", $msg); // str_replace -> IMPEDE O CADASTRO DE ASPAS SIMPLES (')
@@ -138,17 +147,18 @@ if ($_GET['funcao'] == "cad_nao_conforme") {
   $email_remetente = "carlos.silveira.bmx@gmail.com"; // EMAIL CADASTRADO NO WEBMAIL DO XAMPP
 
   // CONFIGURAÇÕES
-  $email_destinatario = "carlos.silveira.bmx@gmail.com"; // EMAIL QUE RECEBERA A MENSAGEM
+  $email_destinatario = $email; // EMAIL QUE RECEBERA A MENSAGEM
   $email_reply = "carlos.silveira.bmx@gmail.com";
   $email_assunto = "BOMIX FORCE - Registro de não conformidade"; //ASSUNTO
 
   // CORPO DO EMAIL
-  $email_conteudo  = "<strong><h2>Dados da não conformidade:</h2></strong>";
-  $email_conteudo .= "<strong>Lote:</strong>        $lote \n";
-  $email_conteudo .= "<strong>Nota Fiscal:</strong> $nota \n";
-  $email_conteudo .= "<strong>Quantidade:</strong>  $quantidade \n";
-  $email_conteudo .= "<strong>Item:</strong>        $item \n";
-  $email_conteudo .= "<strong>Descrição:</strong>   $descricao \n";
+  $email_conteudo = "<h3>Registramos a sua solicitação de abertura de não conformidade. \n Iniciaremos as investigações internas e retornaremos em breve com o resultado. \n Acompanhe o status da sua reclamação ao lado do seu registro.</h3>";
+  // $email_conteudo .= "<h2>Dados da não conformidade:</h2>";
+  // $email_conteudo .= "<strong>Lote:</strong>        $lote \n";
+  // $email_conteudo .= "<strong>Nota Fiscal:</strong> $nota \n";
+  // $email_conteudo .= "<strong>Quantidade:</strong>  $quantidade \n";
+  // $email_conteudo .= "<strong>Item:</strong>        $item \n";
+  // $email_conteudo .= "<strong>Descrição:</strong>   $descricao \n";
 
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=UTF-8';
@@ -242,6 +252,34 @@ if ($_GET['funcao'] == "cad_nao_conforme_msg") {
 
   sqlsrv_free_stmt($stmt);
   sqlsrv_close($conn);
+
+
+
+  // QUANDO O COMERCIAL RESPONDER AO CLIENTE, UM EMAIL É DESPARADO INFORMADO AO CLIENTE QUE A SOLICITAÇÃO FOI RESPONDIDA
+  if ($status == 'RESPONDIDO') {
+
+    $email_remetente = "carlos.silveira.bmx@gmail.com"; // EMAIL CADASTRADO NO WEBMAIL DO XAMPP
+
+    // CONFIGURAÇÕES
+    $email_destinatario = $email; // EMAIL QUE RECEBERA A MENSAGEM
+    $email_reply = "carlos.silveira.bmx@gmail.com";
+    $email_assunto = "BOMIX FORCE - Retorno da não conformidade"; //ASSUNTO
+
+    // CORPO DO EMAIL
+    $email_conteudo = "<h3>O seu registro de não conformidade aberto em $data_entrada foi respondido. \n O relatório de Não Conformidade encontra-se disponível para download em nossa plataforma. </h3>";
+
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = 'Content-type: text/html; charset=UTF-8';
+
+    // CABEÇALHO DO EMAIL
+    $headers[] = 'To: ' . $email_destinatario;
+    $headers[] = 'From: ' . $email_remetente;
+
+    // ENVIA O EMAIL
+    mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+
+    // ====================================================
+  }
 
 
   //VOLTA A PÁGINA ANTERIOR
