@@ -9,6 +9,8 @@ include_once 'conexao/conexao_pdo.php'
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EVITA QUE SISTEMA APAREÇA NOS SITES DE BUSCA -->
+  <meta name="robots" content="noindex">
   <link rel="icon" href="dist/images/favicon.png" type="image/x-icon" />
   <!-- BOOTSTRAP CSS -->
   <link href="dist/css/bootstrap/bootstrap.min.css" rel="stylesheet">
