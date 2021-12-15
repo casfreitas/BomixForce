@@ -83,7 +83,7 @@
     modal.find('#cadastro_data').val(cadastro_data)
 
     if (solicitado) {
-      modal.find('#doc_link').attr("href", "download.php" + "?doc=" + solicitado + "&user=" + id_user)
+      modal.find('#doc_link').attr("href", "download.php" + "?doc=" + solicitado + "&user=" + id)
       document.getElementById('campo_link').style.display = "block";
     } else {
       document.getElementById('campo_link').style.display = "none";

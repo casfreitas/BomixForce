@@ -36,15 +36,15 @@ $arquivo    = $_POST['arquivo'];
 if ($_GET['funcao'] == "cad_documento") {
 
   // CRIA UMA PASTA COM O NOME DO "ID_USER"
-  $dirname = $id_user;
-  $dir = "../upload/documentos/$id_user";
+  $dirname = $id_cad;
+  $dir = "../upload/documentos/$id_cad";
   mkdir($dir, 0777);
 
   if ($_FILES['arquivo']['tmp_name'] != "") {
 
     $extensao  = strtolower(substr($_FILES['arquivo']['name'], -4)); // pega a extensao do arquivo
     $novo_nome = date('Ymd_His') . $extensao; // define o nome do arquivo
-    $diretorio = "../upload/documentos/$id_user/"; // define o diretorio para onde enviaremos o arquivo
+    $diretorio = "../upload/documentos/$id_cad/"; // define o diretorio para onde enviaremos o arquivo
 
     move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome); // EFETUA O UPLOAD
 
@@ -152,7 +152,7 @@ if ($_GET['funcao'] == "envia_documento") {
 
   $extensao = strtolower(substr($_FILES['arquivo']['name'], -4)); //pega a extensao do arquivo
   $novo_nome = date('Ymd_His') . $extensao; //define o nome do arquivo
-  $diretorio = "../upload/documentos/$id_user/"; //define o diretorio para onde enviaremos o arquivo
+  $diretorio = "../upload/documentos/$id/"; //define o diretorio para onde enviaremos o arquivo
 
   move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome); //EFETUA O UPLOAD    
 
@@ -200,6 +200,35 @@ if ($_GET['funcao'] == "envia_documento") {
   //ENVIA MENSAGEM
   session_start();
   $_SESSION["msg"] = "Documento enviado com sucesso!";
+
+  //VOLTA A PÁGINA ANTERIOR
+  header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));
+}
+
+
+
+
+
+/**************************************************************************************************************************************
+ ********************************************************* EXCLUSÃO *******************************************************************
+ **************************************************************************************************************************************/
+
+if (isset($_GET['doc_id'])) {
+
+  $sql = "DELETE FROM sys_tb_documentos	WHERE doc_id = ? ";
+  $params = array($_GET["doc_id"]);
+  $stmt = sqlsrv_query($conn, $sql, $params);
+  if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+  } else {
+    echo "Record delete successfully";
+  }
+  sqlsrv_close($conn);
+
+
+  //APAGA OS IMAGENS DA TABELA "GALERIA_PATRIMONIOS" E DA PASTA
+  array_map('unlink', glob("../upload/documentos/" . $_GET["doc_id"] . "/*.*"));
+  rmdir("../upload/documentos/" . $_GET["doc_id"]);
 
   //VOLTA A PÁGINA ANTERIOR
   header(sprintf('location: %s', $_SERVER['HTTP_REFERER']));

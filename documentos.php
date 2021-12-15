@@ -36,7 +36,8 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
               <th scope="col">Data Solicitação</th>
               <th scope="col">Solicitante</th>
               <th scope="col">Status</th>
-              <th scope="col" width="60px">Arquivo</th>
+              <th scope="col" width="60px">Ações</th>
+
             </tr>
           </thead>
           <tbody>
@@ -92,35 +93,40 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
 
                     <div class="row d-flex align-items-center bt_tabela">
                       <?php if (!isset($enviado)) { ?>
-                        <div class="col-12 p-0 text-center">
+                        <div class="col-6 p-0 text-center">
                           <a href="#" data-bs-toggle="modal" data-bs-target="#RespDoc" data-id="<?= $id ?>" data-id_user="<?= $id_user ?>" data-email="<?= $email ?>" data-documento="<?= $documento ?>" data-solicitado="<?= $solicitado ?>" data-cadastro_data="<?= $cadastro_data ?>">
                             <i class="bi bi-folder-symlink-fill fs-3"></i>
                           </a>
                         </div>
                       <?php } else { ?>
-                        <div class="col-12 p-0 text-center">
+                        <div class="col-6 p-0 text-center">
                           <i class="bi bi-hand-thumbs-up fs-3"></i>
                         </div>
                       <?php } ?>
-                    </div>
 
-                  <?php } else { ?>
 
-                    <div class="row d-flex align-items-center bt_tabela">
+                    <?php } else { ?>
+
                       <?php if (!isset($enviado)) { ?>
-                        <div class="col-12 p-0 text-center">
+                        <div class="col-6 p-0 text-center">
                           <i class="bi bi-question-lg fs-4"></i>
                         </div>
                       <?php } else { ?>
-                        <div class="col-12 p-0 text-center">
+                        <div class="col-6 p-0 text-center">
                           <a href="download.php?doc=<?= $enviado ?>&user=<?= $id_user ?>">
                             <i class="bi bi-file-earmark-arrow-down-fill fs-3"></i>
                           </a>
                         </div>
-                      <?php } ?>
+                    <?php }
+                    } ?>
+                    <?php if ($_SESSION['us_nivel'] == '1') { ?>
+                      <div class="col-6 p-0 text-center">
+                        <a href="Controller/ControllerDocumentos.php?doc_id=<?= $id ?>" title="Excluir" class="del-btn">
+                          <i class="bi bi-trash-fill fs-5"></i>
+                        </a>
+                      </div>
+                    <?php } ?>
                     </div>
-
-                  <?php } ?>
                 </td>
               </tr>
 
