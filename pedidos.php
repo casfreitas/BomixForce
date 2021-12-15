@@ -149,7 +149,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
             if ($row['Status'] == 'LIBERADO') {
               $cor_status = "bg-azul";
             }
-            if ($row['Status'] == 'ENCERRADO') {
+            if ($row['Status'] === 'ENCERRADO') {
               $cor_status = "bg-success";
             }
             if ($row['Status'] == 'BLOQUEADO LO' || $row['Status'] == 'BLOQUEADO PR') {

@@ -26,6 +26,9 @@
             <label for="formFile" class="form-label mt-2">Carregar arquivo</label>
             <input type="hidden" class="form-control" name="id" id="id">
             <input type="hidden" class="form-control" name="id_user" id="id_user">
+            <input type="hidden" class="form-control" name="cadastro_data" id="cadastro_data">
+            <input type="hidden" class="form-control" name="email" id="email">
+
             <input type="file" class="form-control campo_form" name="arquivo" id="formFile" required>
             <div class="invalid-feedback">Campo obrigatório</div>
           </div>
@@ -63,8 +66,11 @@
     var button = $(event.relatedTarget)
     var id = button.data('id')
     var id_user = button.data('id_user')
+    var email = button.data('email')
     var documento = button.data('documento')
+    var cadastro_data = button.data('cadastro_data')
     var solicitado = button.data('solicitado')
+
 
     /////////////////////////////////////////////////////////////////
 
@@ -72,7 +78,9 @@
     //modal.find('.modal-title').text('Editar Usuário: ' + nome)
     modal.find('#id').val(id)
     modal.find('#id_user').val(id_user)
+    modal.find('#email').val(email)
     modal.find('#documento').text(documento)
+    modal.find('#cadastro_data').val(cadastro_data)
 
     if (solicitado) {
       modal.find('#doc_link').attr("href", "download.php" + "?doc=" + solicitado + "&user=" + id_user)

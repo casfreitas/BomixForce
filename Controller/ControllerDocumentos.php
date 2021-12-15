@@ -2,11 +2,12 @@
 include '../conexao/conexao_sqlsrv.php';
 
 //DADOS ENVIADOS PELO FORMULÁRIO
-$id      = $_POST['id'];
-$id_user = $_POST['id_user'];
-$usuario = $_POST['nome_completo'];
-$cliente = $_POST['cliente'];
-$email   = $_POST['email'];
+$id            = $_POST['id'];
+$id_user       = $_POST['id_user'];
+$usuario       = $_POST['nome_completo'];
+$cliente       = $_POST['cliente'];
+$cadastro_data = $_POST['cadastro_data'];
+$email         = $_POST['email'];
 
 $id_cad = md5(uniqid(rand(), true));
 
@@ -96,14 +97,13 @@ if ($_GET['funcao'] == "cad_documento") {
 
   // CONFIGURAÇÕES
   $email_destinatario = "$email"; // EMAIL QUE RECEBERA A MENSAGEM
-  $email_reply = "$email";
+  $email_destino_comercial = "carlos.silveira.bmx@gmail.com"; // EMAIL QUE RECEBERA A MENSAGEM
+  $email_reply = "carlos.silveira.bmx@gmail.com";
   $email_assunto = "BOMIX FORCE - Documento solicitado"; //ASSUNTO
 
   // CORPO DO EMAIL
-  $email_conteudo  = "<strong><h2>Documento solicitado:</h2></strong>";
-  $email_conteudo .= "<strong>Documento:</strong>   $documento \n";
-  $email_conteudo .= "<strong>Solicitante:</strong> $usuario \n";
-  $email_conteudo .= "<strong>Cliente:</strong>     $cliente \n";
+  $email_conteudo = "<h3 style='font-family: Arial, Helvetica, sans-serif; font-weight: normal;line-height: 25px;'>Registramos a sua solicitação de disponibilização de documentação. \n Disponibilizaremos os documentos requeridos em breve. \n Acompanhe o status da sua solicitação ao lado do seu registro. </h3> \n";
+  $email_conteudo .= "<h2 style='font-family: Arial, Helvetica, sans-serif;'>Bomix Force</h2>";
 
   $headers[] = 'MIME-Version: 1.0';
   $headers[] = 'Content-type: text/html; charset=UTF-8';
@@ -112,8 +112,26 @@ if ($_GET['funcao'] == "cad_documento") {
   $headers[] = 'To: ' . $email_destinatario;
   $headers[] = 'From: ' . $email_remetente;
 
-  // ENVIA O EMAIL
+  // ENVIA O EMAIL PARA O CLIENTE
   mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+
+  // ====================================================
+
+  // CORPO DO EMAIL
+  $email_conteudo_comercial  = "<strong><h2>Documento solicitado:</h2></strong>";
+  $email_conteudo_comercial .= "<strong>Documento:</strong>   $documento \n";
+  $email_conteudo_comercial .= "<strong>Solicitante:</strong> $usuario \n";
+  $email_conteudo_comercial .= "<strong>Cliente:</strong>     $cliente \n";
+
+  $headers_comercial[] = 'MIME-Version: 1.0';
+  $headers_comercial[] = 'Content-type: text/html; charset=UTF-8';
+
+  // CABEÇALHO DO EMAIL
+  $headers_comercial[] = 'To: ' . $email_destino_comercial;
+  $headers_comercial[] = 'From: ' . $email_remetente;
+
+  // ENVIA O EMAIL PARA O COMERCIAL
+  mail($email_destino_comercial, $email_assunto, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
 
   // ====================================================
 
@@ -152,6 +170,32 @@ if ($_GET['funcao'] == "envia_documento") {
   if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
   }
+
+
+  // ENVIA EMAIL PARA O USUÁRIO APÓS O CADASTRADO
+  $email_remetente = "carlos.silveira.bmx@gmail.com"; // EMAIL CADASTRADO NO WEBMAIL DO XAMPP
+
+  // CONFIGURAÇÕES
+  $email_destinatario = "$email"; // EMAIL QUE RECEBERA A MENSAGEM
+  $email_reply = "carlos.silveira.bmx@gmail.com";
+  $email_assunto = "BOMIX FORCE - Documento solicitado"; //ASSUNTO
+
+  // CORPO DO EMAIL
+  $email_conteudo = "<h3 style='font-family: Arial, Helvetica, sans-serif; font-weight: normal;line-height: 25px;'>A sua solicitação de disponibilização de documentação realizada em $cadastro_data foi atendida. \n Os documentos solicitados encontram-se disponíveis para download em nossa plataforma.</h3> \n";
+  $email_conteudo .= "<h2 style='font-family: Arial, Helvetica, sans-serif;'>Bomix Force</h2>";
+
+  $headers[] = 'MIME-Version: 1.0';
+  $headers[] = 'Content-type: text/html; charset=UTF-8';
+
+  // CABEÇALHO DO EMAIL
+  $headers[] = 'To: ' . $email_destinatario;
+  $headers[] = 'From: ' . $email_remetente;
+
+  // ENVIA O EMAIL PARA O CLIENTE
+  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+
+  // ====================================================
+
 
   //ENVIA MENSAGEM
   session_start();

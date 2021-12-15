@@ -44,17 +44,17 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
             <?php
             include 'conexao/conexao_sqlsrv.php';
             if ($_SESSION['us_grupo'] == '1' || $_SESSION['us_grupo'] == '2') {
-              $sql = "SELECT d.doc_id, d.us_fk, d.doc_documento, d.doc_solicitado, d.doc_enviado, d.doc_data_cadastro, u.us_id, u.us_usuario FROM sys_tb_documentos d
-          INNER JOIN sys_tb_usuarios u
-          ON u.us_id = d.us_fk
-          ";
+              $sql = "SELECT d.doc_id, d.us_fk, d.doc_documento, d.doc_solicitado, d.doc_enviado, d.doc_data_cadastro, u.us_id, u.us_usuario, u.us_email FROM sys_tb_documentos d
+                      INNER JOIN sys_tb_usuarios u
+                      ON u.us_id = d.us_fk
+                      ";
             } else {
               $usuario = $_SESSION['us_usuario'];
-              $sql = "SELECT d.doc_id, d.us_fk, d.doc_documento, d.doc_solicitado, d.doc_enviado, d.doc_data_cadastro, u.us_id, u.us_usuario FROM sys_tb_documentos d
-          INNER JOIN sys_tb_usuarios u
-          ON u.us_id = d.us_fk
-          WHERE u.us_usuario = '$usuario'
-          ";
+              $sql = "SELECT d.doc_id, d.us_fk, d.doc_documento, d.doc_solicitado, d.doc_enviado, d.doc_data_cadastro, u.us_id, u.us_usuario, u.us_email FROM sys_tb_documentos d
+                      INNER JOIN sys_tb_usuarios u
+                      ON u.us_id = d.us_fk
+                      WHERE u.us_usuario = '$usuario'
+                      ";
             }
 
             $stmt = sqlsrv_query($conn, $sql);
@@ -67,6 +67,7 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
               $enviado       = $row['doc_enviado'];
               $id_user       = $row['us_fk'];
               $solicitante   = $row['us_usuario'];
+              $email         = $row['us_email'];
 
               //COR DO STATUS
               if ($row['doc_enviado'] == '') {
@@ -76,6 +77,8 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
                 $cor_status = "bg-yellow text-dark";
                 $doc = 'FINALIZADO';
               }
+
+              $cadastro_data = date_format($data_cadastro, 'd/m/Y');
 
             ?>
               <tr>
@@ -90,7 +93,7 @@ if ($_SESSION['us_grupo'] === '4' && $documentos != 1) {
                     <div class="row d-flex align-items-center bt_tabela">
                       <?php if (!isset($enviado)) { ?>
                         <div class="col-12 p-0 text-center">
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#RespDoc" data-id="<?= $id ?>" data-id_user="<?= $id_user ?>" data-documento="<?= $documento ?>" data-solicitado="<?= $solicitado ?>">
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#RespDoc" data-id="<?= $id ?>" data-id_user="<?= $id_user ?>" data-email="<?= $email ?>" data-documento="<?= $documento ?>" data-solicitado="<?= $solicitado ?>" data-cadastro_data="<?= $cadastro_data ?>">
                             <i class="bi bi-folder-symlink-fill fs-3"></i>
                           </a>
                         </div>
