@@ -63,7 +63,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
     </section>
 
     <?php if (isset($_POST['pesqPedido'])) {
-      $pedido = $_POST['pedido'];
+      $pedido = strtoupper($_POST['pedido']);
 
       $data_day7menos = date_create($_POST['data_inicio']);
       $data_day7menos = date_format($data_day7menos, 'd/m/Y');
@@ -104,7 +104,7 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
           if (isset($_POST['pesqPedido'])) {
 
             if (isset($_POST['pedido'])) {
-              $pedido = $_POST['pedido'];
+              $pedido = strtoupper($_POST['pedido']);
               //echo $pedido . '<br>';
             }
 
@@ -170,7 +170,8 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
               <td nowrap="nowrap"><?= $ped_vend_id ?></th>
               <td><?= $ord_compra ?></td>
               <td nowrap="nowrap"><span class="badge <?= $cor_status ?> p-2"><?= $status ?></span></td>
-              <td nowrap="nowrap"><?= date_format($emissao, 'Y/m/d'); ?></td>
+              <td nowrap="nowrap"><?= date_format($emissao, 'd/m/Y'); ?></td>
+              <!-- <td nowrap="nowrap"><?= date_format($emissao, 'Y/m/d'); ?></td> -->
               <td nowrap="nowrap"><?= $cidade ?> - <?= $uf ?></td>
               <td><?= $cliente ?></td>
               <td>
@@ -219,9 +220,9 @@ if ($_SESSION['us_grupo'] === '4' && $pedidos != 3) {
   table$(document).ready(function() {
     table$('#pedidos').DataTable({
       "searching": false,
-      "order": [
-        [3, 'desc']
-      ],
+      // "order": [
+      //   [3, 'desc']
+      // ],
       "lengthMenu": [
         [10, 15, 20, 25, 30, 50, 100, -1],
         [10, 15, 20, 25, 30, 50, 100, "Todos"]

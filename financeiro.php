@@ -56,7 +56,7 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
     </section>
 
     <?php if (isset($_POST['pesqNota'])) {
-      $nota = $_POST['nota'];
+      $nota = strtoupper($_POST['nota']);
 
       $data_dayMais = date_create($_POST['data_inicio']);
       $data_dayMais = date_format($data_dayMais, 'd/m/Y');
@@ -94,7 +94,7 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
           if (isset($_POST['pesqNota'])) {
 
             if (isset($_POST['nota'])) {
-              $nota = $_POST['nota'];
+              $nota = strtoupper($_POST['nota']);
               //echo $nota . '<br>';
             }
 
