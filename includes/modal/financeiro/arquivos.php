@@ -14,7 +14,7 @@
             <select class="form-select campo_select inputColor" id="" name="pasta" onchange="muda(this);" required>
               <option selected disabled value="">TIPO DE ARQUIVO</option>
               <option value="Danfe">NOTA FISCAL</option>
-              <!-- <option value="Boletos/Itau">BOLETO</option> -->
+              <option value="Boletos/Itau">BOLETO</option>
               <option value="XML">XML</option>
             </select>
             <div class="invalid-feedback">Campo obrigatório</div>
