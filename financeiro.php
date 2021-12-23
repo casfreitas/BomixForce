@@ -127,7 +127,8 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
 
             <tr>
               <td nowrap="nowrap"><?= $row['Nota'] ?></th>
-              <td nowrap="nowrap"><?= date_format($row['Emissao'], 'Y/m/d'); ?></td>
+                <!-- <td nowrap="nowrap"><?= date_format($row['Emissao'], 'Y/m/d'); ?></td> -->
+              <td nowrap="nowrap"><?= date_format($row['Emissao'], 'd/m/Y'); ?></td>
               <td nowrap="nowrap"><?= $row['Cliente'] ?></td>
               <td>
                 <div class="row d-flex align-items-center bt_tabela">
@@ -167,9 +168,9 @@ if ($_SESSION['us_grupo'] === '4' && $financeiro != 2) {
   table$(document).ready(function() {
     table$('#financeiro').DataTable({
       "searching": false,
-      "order": [
-        [1, 'desc']
-      ],
+      // "order": [
+      //   [1, 'desc']
+      // ],
       "lengthMenu": [
         [10, 15, 20, 25, 30, 50, 100, -1],
         [10, 15, 20, 25, 30, 50, 100, "Todos"]
