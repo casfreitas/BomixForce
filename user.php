@@ -395,7 +395,7 @@ if ($_SESSION['us_nivel'] == '1') { ?>
       _this.classList.add('loading');
       setTimeout(function() {
         _this.classList.remove('loading');
-      }, 100000);
+      }, 10000);
     });
   </script>
 
@@ -434,7 +434,7 @@ if ($_SESSION['us_grupo'] == '1') { ?>
       _this.classList.add('loading');
       setTimeout(function() {
         _this.classList.remove('loading');
-      }, 100000);
+      }, 10000);
     });
   </script>
 
@@ -496,7 +496,7 @@ if ($_SESSION['us_grupo'] == '1') { ?>
     _this.classList.add('loading');
     setTimeout(function() {
       _this.classList.remove('loading');
-    }, 100000);
+    }, 10000);
   });
 </script>
 
@@ -507,6 +507,17 @@ if ($_SESSION['us_grupo'] == '1') { ?>
 if ($_SESSION['us_grupo'] == '3' || $_SESSION['us_nivel'] == '1') { ?>
   <?php include 'includes/modal/user/cad_cliente_user.php'; ?>
 <?php } ?>
+
+<script>
+  // BOTAO LOAD
+  document.querySelector('.LoadCadUserCliente').addEventListener('click', function() {
+    var _this = this;
+    _this.classList.add('loading');
+    setTimeout(function() {
+      _this.classList.remove('loading');
+    }, 10000);
+  });
+</script>
 
 
 

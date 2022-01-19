@@ -4,11 +4,11 @@ include '../conexao/conexao_sqlsrv.php';
 
 $id_cad = md5(uniqid(rand(), true)); // ID PRINCIPAL
 
-$senha = base64_encode('1234'); // SENHA PADRÃO
+//$senha = base64_encode('1234'); // SENHA PADRÃO
 
-// $bytes = openssl_random_pseudo_bytes(4);
-// $senha = bin2hex($bytes);
-// $senha = base64_encode($senha);
+$bytes = openssl_random_pseudo_bytes(4);
+$senha = bin2hex($bytes);
+$senha = base64_encode($senha);
 
 $nivel = '0';
 
@@ -23,7 +23,6 @@ if (isset($_POST["id_user"])) {
 if (isset($_POST["identificador"])) {
   $identificador = $_POST['identificador'];
 }
-
 
 if (isset($_POST["nome_completo"])) {
   $nome_completo = strtoupper(trim($_POST['nome_completo']));
@@ -105,7 +104,7 @@ if ($_GET['funcao'] == "cad_admin" || $_GET['funcao'] == "cad_comercial") {
     return die;
   }
 
-  // ↑_ CADASTRA DADOS
+  // CADASTRA DADOS
   $user_sql = "INSERT INTO sys_tb_usuarios (
                                             us_id,
                                             us_identificador,
@@ -149,7 +148,7 @@ if ($_GET['funcao'] == "cad_admin" || $_GET['funcao'] == "cad_comercial") {
   // CONFIGURAÇÕES
   $email_destinatario = "$email"; // EMAIL QUE RECEBERA A MENSAGEM
   $email_reply = "$email";
-  $email_assunto = "BOMIX FORCE - Seus dados de acesso"; //ASSUNTO
+  $email_assunto = "BOMIX FORCE - Seus dados de acesso"; // ASSUNTO
 
   $papel = array('1' => 'ADMINISTRADOR', '2' => 'COMERCIAL', '3' => 'CLIENTE', '4' => 'USUÁRIO');
 
@@ -171,11 +170,11 @@ if ($_GET['funcao'] == "cad_admin" || $_GET['funcao'] == "cad_comercial") {
   $headers[] = 'From: ' . $email_remetente;
 
   // ENVIA O EMAIL
-  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   // ===========================================================================================
 
-  //ENVIA MENSAGEM
+  // ENVIA MENSAGEM
   session_start();
   $_SESSION["msg"] = "Cadastro realizado com sucesso!";
 
@@ -285,7 +284,7 @@ if ($_GET['funcao'] == "cad_cliente") {
   $headers[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   //====================================================
 
@@ -463,7 +462,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $headers[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  //mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
+  mail($email_destinatario, $email_assunto, nl2br($email_conteudo), implode("\r\n", $headers));
 
   //===============================================================================================
 
@@ -487,7 +486,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
   $headers_comercial[] = 'From: ' . $email_remetente;
 
   //ENVIA O EMAIL
-  //mail($email_destinatario_comercial, $email_assunto_comercial, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
+  mail($email_destinatario_comercial, $email_assunto_comercial, nl2br($email_conteudo_comercial), implode("\r\n", $headers_comercial));
 
   //ENVIA MENSAGEM
   session_start();

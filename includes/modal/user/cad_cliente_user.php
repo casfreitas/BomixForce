@@ -108,14 +108,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  // BOTAO LOAD
-  document.querySelector('.LoadCadUserCliente').addEventListener('click', function() {
-    var _this = this;
-    _this.classList.add('loading');
-    setTimeout(function() {
-      _this.classList.remove('loading');
-    }, 100000);
-  });
-</script>
