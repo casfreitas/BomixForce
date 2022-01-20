@@ -436,7 +436,7 @@ if ($_GET['funcao'] == "cadUserCliente") {
 
   //ENVIA EMAIL PARA O USUÁRIO CADASTRADO
   $email_remetente = "carlos.silveira.bmx@gmail.com"; //EMAIL CADASTRADO NO WEBMAIL DO XAMPP
-  $email_comercial = "casfreitas@yahoo.com.br"; //EMAIL QUE RECEBERAR ALERTA PARA ATIVAÇÃO DO USUÁRIO
+  $email_comercial = "comercial@bomix.com.br"; //EMAIL QUE RECEBERAR ALERTA PARA ATIVAÇÃO DO USUÁRIO
 
   $email_destinatario = "$email"; //EMAIL QUE RECEBERA A MENSAGEM
   $email_reply = "$email";

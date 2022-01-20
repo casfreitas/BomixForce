@@ -97,8 +97,8 @@ if ($_GET['funcao'] == "cad_documento") {
 
   // CONFIGURAÇÕES
   $email_destinatario = "$email"; // EMAIL QUE RECEBERA A MENSAGEM
-  $email_destino_comercial = "carlos.silveira.bmx@gmail.com"; // EMAIL QUE RECEBERA A MENSAGEM
-  $email_reply = "carlos.silveira.bmx@gmail.com";
+  $email_destino_comercial = "comercial@bomix.com.br"; // EMAIL QUE RECEBERA A MENSAGEM
+  $email_reply = "$email";
   $email_assunto = "BOMIX FORCE - Documento solicitado"; //ASSUNTO
 
   // CORPO DO EMAIL
@@ -177,7 +177,7 @@ if ($_GET['funcao'] == "envia_documento") {
 
   // CONFIGURAÇÕES
   $email_destinatario = "$email"; // EMAIL QUE RECEBERA A MENSAGEM
-  $email_reply = "carlos.silveira.bmx@gmail.com";
+  $email_reply = "$email";
   $email_assunto = "BOMIX FORCE - Documento solicitado"; //ASSUNTO
 
   // CORPO DO EMAIL

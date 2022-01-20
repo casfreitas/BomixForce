@@ -148,7 +148,7 @@ if ($_GET['funcao'] == "cad_nao_conforme") {
 
   // CONFIGURAÇÕES
   $email_destinatario = $email; // EMAIL QUE RECEBERA A MENSAGEM
-  $email_reply = "carlos.silveira.bmx@gmail.com";
+  $email_reply = $email;
   $email_assunto = "BOMIX FORCE - Registro de não conformidade"; //ASSUNTO
 
   // CORPO DO EMAIL
@@ -262,7 +262,7 @@ if ($_GET['funcao'] == "cad_nao_conforme_msg") {
 
     // CONFIGURAÇÕES
     $email_destinatario = $email; // EMAIL QUE RECEBERA A MENSAGEM
-    $email_reply = "carlos.silveira.bmx@gmail.com";
+    $email_reply = $email;
     $email_assunto = "BOMIX FORCE - Retorno da não conformidade"; //ASSUNTO
 
     // CORPO DO EMAIL

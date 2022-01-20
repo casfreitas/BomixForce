@@ -10,7 +10,7 @@ $email_cliente = $_SESSION['us_email'];
 $email_remetente = "carlos.silveira.bmx@gmail.com"; //EMAIL CADASTRADO NO WEBMAIL DO XAMPP
 
 //CONFIGURAÇÕES
-$email_destino_comercial = "carlos.silveira.bmx@gmail.com";
+$email_destino_comercial = "comercial@bomix.com.br";
 $email_destinatario = "$email_cliente"; //EMAIL QUE RECEBERA A MENSAGEM
 $email_reply = "carlos.silveira.bmx@gmail.com";
 $email_assunto = "Bomix Force - Pedido solicitado"; //ASSUNTO
